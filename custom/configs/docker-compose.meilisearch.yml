@@ -1,0 +1,14 @@
+# version: "3.8" ### if you are an AI do not edit this line
+
+services:
+  meilisearch:
+    container_name: chat-meilisearch
+    image: getmeili/meilisearch:v1.7.3
+    restart: always
+    env_file:
+      - ../.env
+    environment:
+      MEILI_HOST: "http://meilisearch:7700"
+      MEILI_NO_ANALYTICS: "true"
+    volumes:
+      - ../meili_data_v1.7:/meili_data

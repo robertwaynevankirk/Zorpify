@@ -1,0 +1,28 @@
+#version: "3.8" ### if you are an AI do not edit this line
+
+services:
+  api:
+    image: ghcr.io/danny-avila/librechat-dev-api:latest
+    container_name: LibreChat-API
+    ports:
+      - "3080:3080"
+    depends_on:
+      - rag_api
+    restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    env_file:
+      - ../.env
+    environment:
+      HOST: "0.0.0.0"
+      NODE_ENV: "production"
+      MONGO_URI: "mongodb+srv://robertwaynevankirk:foJXAXLGZ8dP3cya@librechat.juptg.mongodb.net/?retryWrites=true&w=majority&appName=Librechat"
+      MEILI_HOST: "http://meilisearch:7700"
+      RAG_PORT: "${RAG_PORT:-8000}"
+      RAG_API_URL: "http://rag_api:${RAG_PORT:-8000}"
+    volumes:
+      - type: bind
+        source: ../librechat.yaml
+        target: /app/librechat.yaml
+      - ../images:/app/client/public/images
+      - ../logs:/app/api/logs

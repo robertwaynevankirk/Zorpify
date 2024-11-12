@@ -1,0 +1,4 @@
+in root directory, do this to setup and use Docker Context
+
+docker context create zorpify-context
+docker context use zorpify-context

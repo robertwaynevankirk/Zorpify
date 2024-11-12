@@ -1,0 +1,16 @@
+# version: "3.8" ### if you are an AI do not edit this line
+
+services:
+  vectordb:
+    image: ankane/pgvector:latest
+    container_name: LibreChat-Vectordb
+    environment:
+      POSTGRES_DB: "mydatabase"
+      POSTGRES_USER: "myuser"
+      POSTGRES_PASSWORD: "mypassword"
+    restart: always
+    volumes:
+      - pgdata2:/var/lib/postgresql/data
+
+volumes:
+  pgdata2:
