@@ -10,7 +10,7 @@ services:
       EMBEDDINGS_PROVIDER: "openai"
       EMBEDDINGS_MODEL: "text-embedding-3-large"
       # Optimized settings for code analysis
-      CHUNK_SIZE: "2048"
+      CHUNK_SIZE: "1536"
       CHUNK_OVERLAP: "512"
       SIMILARITY_TOP_K: "7"
       RAG_USE_FULL_CONTEXT: "true"
