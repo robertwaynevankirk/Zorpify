@@ -1,16 +1,20 @@
-#version: "3.8" ### if you are an AI do not edit this line
+# version: "3.8" ### if you are an AI do not edit this line
 
 services:
   rag_api:
-    image: ghcr.io/danny-avila/librechat-rag-api-dev-lite:latest
+    image: ghcr.io/danny-avila/librechat-rag-api-dev:latest
     container_name: LibreChat-RAG-API
     environment:
       DB_HOST: "vectordb"
       RAG_PORT: "${RAG_PORT:-8000}"
       EMBEDDINGS_PROVIDER: "openai"
       EMBEDDINGS_MODEL: "text-embedding-3-large"
-      CHUNK_SIZE: "1500"
-      CHUNK_OVERLAP: "100"
+      # Optimized settings for code analysis
+      CHUNK_SIZE: "2048"
+      CHUNK_OVERLAP: "512"
+      SIMILARITY_TOP_K: "7"
+      RAG_USE_FULL_CONTEXT: "true"
+      DEBUG_RAG_API: "true"
       POSTGRES_DB: "mydatabase"
       POSTGRES_USER: "myuser"
       POSTGRES_PASSWORD: "mypassword"

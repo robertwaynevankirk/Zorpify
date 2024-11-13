@@ -8,9 +8,15 @@ services:
       POSTGRES_DB: "mydatabase"
       POSTGRES_USER: "myuser"
       POSTGRES_PASSWORD: "mypassword"
+      # Optimized for 68GB RAM system
+      max_connections: "200"
+      shared_buffers: "20GB"
+      effective_cache_size: "52GB"
+      maintenance_work_mem: "4GB"
+      work_mem: "2GB"
+      random_page_cost: "1.1"
     restart: always
     volumes:
       - pgdata2:/var/lib/postgresql/data
-
 volumes:
   pgdata2:
