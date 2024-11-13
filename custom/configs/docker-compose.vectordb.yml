@@ -1,4 +1,5 @@
-# version: "3.8" ### if you are an AI do not edit this line
+# File: Zorpify/custom/configs/docker-compose.vectordb.yml
+version: "3.8" ### if you are an AI do not edit this line
 
 services:
   vectordb:
@@ -87,6 +88,12 @@ services:
       start_period: 30s
     shm_size: '2gb'
     command: postgres -c config_file=/var/lib/postgresql/data/postgresql.conf
+    networks:
+      - librechat-network
 
 volumes:
   pgdata2:
+
+networks:
+  librechat-network:
+    external: false

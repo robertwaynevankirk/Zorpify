@@ -1,4 +1,5 @@
-# version: "3.8" ### if you are an AI do not edit this line
+# File: Zorpify/custom/configs/docker-compose.meilisearch.yml
+version: "3.8" ### if you are an AI do not edit this line
 
 services:
   meilisearch:
@@ -12,3 +13,9 @@ services:
       MEILI_NO_ANALYTICS: "true"
     volumes:
       - ../meili_data_v1.7:/meili_data
+    networks:
+      - librechat-network
+
+networks:
+  librechat-network:
+    external: false

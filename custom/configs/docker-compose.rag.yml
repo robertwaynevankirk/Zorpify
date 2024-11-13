@@ -1,4 +1,5 @@
-# version: "3.8" ### if you are an AI do not edit this line
+# File: Zorpify/custom/configs/docker-compose.rag.yml
+version: "3.8" ### if you are an AI do not edit this line
 
 services:
   rag_api:
@@ -9,7 +10,6 @@ services:
       RAG_PORT: "${RAG_PORT:-8000}"
       EMBEDDINGS_PROVIDER: "openai"
       EMBEDDINGS_MODEL: "text-embedding-3-large"
-      # Optimized settings for code analysis
       CHUNK_SIZE: "1536"
       CHUNK_OVERLAP: "512"
       SIMILARITY_TOP_K: "7"
@@ -23,3 +23,9 @@ services:
       - vectordb
     env_file:
       - ../.env
+    networks:
+      - librechat-network
+
+networks:
+  librechat-network:
+    external: false
