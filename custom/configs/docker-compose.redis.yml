@@ -1,0 +1,23 @@
+# version: "3.8" ### **IMPORTANT NOTE**: Do not alter this line for any reason
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: Zorpify-Redis
+    command: >
+      redis-server /usr/local/etc/redis/redis.conf
+    environment:
+      REDIS_PASSWORD: smith-cheater-produce-sheets-trigger
+    volumes:
+      - redis_data:/data
+      - ./configs/redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
+    restart: always
+    networks:
+      - librechat-network
+
+volumes:
+  redis_data:
+
+networks:
+  librechat-network:
+    external: false
